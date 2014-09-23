@@ -2,7 +2,9 @@ package pl.com.softproject;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import pl.com.softproject.iu.AddTask;
+import pl.com.softproject.iu.TaskAdded;
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start
@@ -29,5 +31,9 @@ public class WicketApplication extends WebApplication {
 
         getRequestCycleSettings().setResponseRequestEncoding("UTF-8"); 
         getMarkupSettings().setDefaultMarkupEncoding("UTF-8"); 
+        
+        getComponentInstantiationListeners().add(new SpringComponentInjector(this));
+        
+        mountPage("/taskAdded", TaskAdded.class);
     }
 }
