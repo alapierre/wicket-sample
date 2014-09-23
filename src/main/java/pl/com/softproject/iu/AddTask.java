@@ -20,6 +20,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import pl.com.softproject.dao.TaskDAO;
 import pl.com.softproject.model.Task;
 import pl.com.softproject.service.HelloService;
 
@@ -33,6 +34,9 @@ public class AddTask extends WebPage {
     
     @SpringBean
     private HelloService helloService;
+    
+    @SpringBean
+    private TaskDAO taskDAO;
 
     public AddTask() {
 
@@ -59,7 +63,7 @@ public class AddTask extends WebPage {
             System.out.println("submit");
             System.out.println(task);
             
-            helloService.sayHello();
+            taskDAO.save(task);
             
             TaskAdded page = new TaskAdded();
             setResponsePage(page);
