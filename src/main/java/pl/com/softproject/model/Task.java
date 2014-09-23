@@ -17,6 +17,7 @@
 package pl.com.softproject.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,6 +36,7 @@ public class Task implements Serializable {
     
     private String name;
     private String description;
+    private Date doDate;
 
     public String getName() {
         return name;
@@ -59,10 +61,18 @@ public class Task implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    
+
+    public Date getDoDate() {
+        return doDate;
+    }
+
+    public void setDoDate(Date doDate) {
+        this.doDate = doDate;
+    }
+
     @Override
     public String toString() {
-        return "Task{" + "name=" + name + ", description=" + description + '}';
+        return "Task{" + "id=" + id + ", name=" + name + ", description=" + description + ", doDate=" + doDate + '}';
     }
     
     

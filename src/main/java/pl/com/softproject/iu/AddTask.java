@@ -15,6 +15,10 @@
  */
 package pl.com.softproject.iu;
 
+import java.util.Date;
+import org.apache.wicket.datetime.StyleDateConverter;
+import org.apache.wicket.datetime.markup.html.form.DateTextField;
+import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -43,9 +47,16 @@ public class AddTask extends WebPage {
         TextField nameField = new TextField("name", new PropertyModel(task, "name"));
         TextField descriptionField = new TextField("description", new PropertyModel(task, "description"));
 
+        //DatePicker datePickerField = new DatePicker();
+        
+        DateTextField dateTextField = new DateTextField("doDate", new PropertyModel<Date>(
+            task, "doDate"),  new StyleDateConverter("S-", false));
+        dateTextField.add(new DatePicker());
+        
         Form form = new LoginForm("taskForm");
         form.add(nameField);
         form.add(descriptionField);
+        form.add(dateTextField);
         add(form);
         
         System.out.println(helloService);
